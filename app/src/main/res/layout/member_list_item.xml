@@ -15,6 +15,7 @@
             android:id="@+id/member_imageview"
             android:layout_width="128dp"
             android:layout_height="128dp"
+            android:src="@drawable/ic_srd_posing_bodybuilder_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />

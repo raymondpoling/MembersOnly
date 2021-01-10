@@ -61,8 +61,9 @@ public class MemberDisplayActivity extends AppCompatActivity implements MemberDi
         genderTextView.setText(member.getGender());
         birthdayTextView.setText(member.getBirthday());
         membershipDateTextView.setText(member.getMembership());
-        memberImage.setImageBitmap(member.getMemberBitmap());
-
+        if(member.getMemberBitmap() != null) {
+            memberImage.setImageBitmap(member.getMemberBitmap());
+        }
         deleteButton.setOnClickListener(v -> {
             memberDisplayPresenter.deleteMember(member);
             finish();

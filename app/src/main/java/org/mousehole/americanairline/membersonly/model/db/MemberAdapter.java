@@ -73,7 +73,9 @@ public class MemberAdapter extends BaseAdapter {
 
         membershipLevel.setImageResource(resId);
 
-        Glide.with(mainView.getContext()).load(member.getMemberBitmap()).into(memberImage);
+        if(member.getMemberBitmap() != null) {
+            Glide.with(mainView.getContext()).load(member.getMemberBitmap()).into(memberImage);
+        }
 
         mainView.setOnClickListener(view1 -> {
             displayDelegate.showMembers(member);
