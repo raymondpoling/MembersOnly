@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.mousehole.americanairline.membersonly.R;
@@ -19,6 +20,8 @@ import static org.mousehole.americanairline.membersonly.activity.listdisplay.vie
 public class MemberDisplayActivity extends AppCompatActivity implements MemberDisplayContract.MemberDisplayView {
 
     TextView nameTextView, genderTextView, birthdayTextView, membershipDateTextView, memberShipLevelTextView;
+
+    ImageView memberImage;
 
     Button backButton, deleteButton;
 
@@ -34,6 +37,7 @@ public class MemberDisplayActivity extends AppCompatActivity implements MemberDi
         birthdayTextView = findViewById(R.id.birthday_textview);
         membershipDateTextView = findViewById(R.id.membership_date_textview);
         memberShipLevelTextView = findViewById(R.id.membershiplevel_textview);
+        memberImage = findViewById(R.id.icon_imageview);
 
         backButton = findViewById(R.id.back_button);
         deleteButton = findViewById(R.id.delete_button);
@@ -57,6 +61,7 @@ public class MemberDisplayActivity extends AppCompatActivity implements MemberDi
         genderTextView.setText(member.getGender());
         birthdayTextView.setText(member.getBirthday());
         membershipDateTextView.setText(member.getMembership());
+        memberImage.setImageBitmap(member.getMemberBitmap());
 
         deleteButton.setOnClickListener(v -> {
             memberDisplayPresenter.deleteMember(member);

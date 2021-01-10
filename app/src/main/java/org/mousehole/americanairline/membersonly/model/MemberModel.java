@@ -1,12 +1,11 @@
 package org.mousehole.americanairline.membersonly.model;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 public class MemberModel implements Parcelable {
-    private String filepath;
+    private Bitmap memberBitmap;
     private int id;
     private String name;
     private String gender;
@@ -18,10 +17,10 @@ public class MemberModel implements Parcelable {
      * This constructor is used for building objects from the database. See other constructor for parameters
      * @param id The database id of the record
      */
-    public MemberModel(int id, String name, String filepath, String gender, String membership, String birthday, MembershipLevel membershipLevel) {
+    public MemberModel(int id, String name, Bitmap memberBitmap, String gender, String membership, String birthday, MembershipLevel membershipLevel) {
         this.id = id;
         this.name = name;
-        this.filepath = filepath;
+        this.memberBitmap = memberBitmap;
         this.gender = gender;
         this.membership = membership;
         this.birthday = birthday;
@@ -36,9 +35,9 @@ public class MemberModel implements Parcelable {
      * @param birthday date of birth for promotions (age related programs, gift certificate, etc)
      * @param membershipLevel the level of membership for special benefits
      */
-    public MemberModel(String name, String filepath, String gender, String membership, String birthday, MembershipLevel membershipLevel) {
+    public MemberModel(String name, Bitmap memberBitmap, String gender, String membership, String birthday, MembershipLevel membershipLevel) {
         this.name = name;
-        this.filepath = filepath;
+        this.memberBitmap = memberBitmap;
         this.gender = gender;
         this.membership = membership;
         this.birthday = birthday;
@@ -46,7 +45,7 @@ public class MemberModel implements Parcelable {
     }
 
     protected MemberModel(Parcel in) {
-        filepath = in.readString();
+        memberBitmap = (Bitmap) in.readValue(getClass().getClassLoader());
         id = in.readInt();
         name = in.readString();
         gender = in.readString();
@@ -110,12 +109,12 @@ public class MemberModel implements Parcelable {
         this.membershipLevel = membershipLevel;
     }
 
-    public String getFilepath() {
-        return filepath;
+    public Bitmap getMemberBitmap() {
+        return memberBitmap;
     }
 
-    public void setFilepath(String filepath) {
-        this.filepath = filepath;
+    public void setMemberBitmap(Bitmap memberBitmap) {
+        this.memberBitmap = memberBitmap;
     }
 
     @Override
@@ -131,7 +130,7 @@ public class MemberModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(filepath);
+        parcel.writeValue(memberBitmap);
         parcel.writeInt(id);
         parcel.writeString(name);
         parcel.writeString(gender);

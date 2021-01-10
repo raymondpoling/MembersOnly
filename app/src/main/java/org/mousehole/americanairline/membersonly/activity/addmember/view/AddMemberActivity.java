@@ -1,9 +1,14 @@
 package org.mousehole.americanairline.membersonly.activity.addmember.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.mousehole.americanairline.membersonly.R;
 import org.mousehole.americanairline.membersonly.activity.addmember.presenter.AddMemberPresenterContract;
@@ -37,6 +43,11 @@ public class AddMemberActivity extends AppCompatActivity implements AddMemberPre
     String gender = "Prefer Not to Say";
     MembershipLevel membershipLevel = MembershipLevel.REGULAR;
 
+    Bitmap memberImage;
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +68,16 @@ public class AddMemberActivity extends AppCompatActivity implements AddMemberPre
 
     @Override
     public void displayAddMember() {
+
+        selectImageView.setOnClickListener(v -> {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            try {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(this,"Could not take photo!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         ArrayAdapter<CharSequence> membershipLevelAdapter = ArrayAdapter.createFromResource(this,
                 R.array.membership_levels, android.R.layout.simple_spinner_item);
 // Specify the layout to use when the list of choices appears
@@ -105,12 +126,23 @@ public class AddMemberActivity extends AppCompatActivity implements AddMemberPre
             String name = nameEditText.getText().toString();
             String birthday = birthdayEditText.getText().toString();
             String membershipDate = membershipDateEditText.getText().toString();
-            MemberModel member = new MemberModel(name, "", gender, membershipDate, birthday, membershipLevel);
+            MemberModel member = new MemberModel(name, memberImage, gender, membershipDate, birthday, membershipLevel);
             addMemberPresenter.addMember(member);
             finish();
         });
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
+            Bundle extras = data.getExtras();
+            Bitmap bitMap = (Bitmap)extras.get("data");
+            memberImage = bitMap;
+            selectImageView.setImageBitmap(bitMap);
+        }
     }
 
     @Override
