@@ -112,7 +112,7 @@ public class MemberDBHelper extends SQLiteOpenHelper {
                 ByteArrayInputStream bais = new ByteArrayInputStream(cursor.getBlob(cursor.getColumnIndex(IMAGE_COLUMN)));
                 memberImage = BitmapFactory.decodeStream(bais);
             } catch(Exception e) {
-                Log.e(LOG_TAG, e.getMessage(), e);
+                Log.d(LOG_TAG, "Member image missing.");
             }
             String gender = getString(cursor, GENDER_COLUMN);
             String birthday = getString(cursor,BIRTHDAY_COLUMN);

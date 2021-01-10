@@ -2,6 +2,7 @@ package org.mousehole.americanairline.membersonly.activity.login.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +39,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void displayLogin() {
-        Log.e(Constants.LOG_TAG, "Here?");
         loginButton.setOnClickListener(v -> {
             String username = usernameEditText.getText().toString();
             String password = passwordEditText.getText().toString();
@@ -63,5 +63,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         startActivity(start);
         finish();
         Log.e(Constants.LOG_TAG, "Finish was obviously ran");
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }
