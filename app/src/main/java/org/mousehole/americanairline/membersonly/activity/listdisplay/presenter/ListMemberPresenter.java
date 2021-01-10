@@ -1,4 +1,4 @@
-package org.mousehole.americanairline.membersonly.presenter;
+package org.mousehole.americanairline.membersonly.activity.listdisplay.presenter;
 
 import org.mousehole.americanairline.membersonly.model.db.MemberDBHelper;
 
@@ -12,6 +12,6 @@ public class ListMemberPresenter implements ListMemberPresenterContract.ListMemb
 
     @Override
     public void getAllMembers(ListMemberPresenterContract.ListMemberView listUseView) {
-
+        listUseView.displayListView(memberDBHelper.getAllMembers());
     }
 }

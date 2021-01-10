@@ -1,4 +1,4 @@
-package org.mousehole.americanairline.membersonly.presenter;
+package org.mousehole.americanairline.membersonly.activity.login.presenter;
 
 public class LoginPresenter implements LoginContract.LoginPresenter {
 

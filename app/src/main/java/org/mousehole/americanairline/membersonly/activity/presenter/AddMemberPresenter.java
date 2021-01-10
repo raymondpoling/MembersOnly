@@ -1,5 +1,6 @@
-package org.mousehole.americanairline.membersonly.presenter;
+package org.mousehole.americanairline.membersonly.activity.presenter;
 
+import org.mousehole.americanairline.membersonly.activity.addmember.presenter.AddMemberPresenterContract;
 import org.mousehole.americanairline.membersonly.model.MemberModel;
 import org.mousehole.americanairline.membersonly.model.db.MemberDBHelper;
 

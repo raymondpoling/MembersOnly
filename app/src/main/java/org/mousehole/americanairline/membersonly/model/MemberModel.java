@@ -1,24 +1,29 @@
 package org.mousehole.americanairline.membersonly.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class MemberModel {
+public class MemberModel implements Parcelable {
+    private String filepath;
     private int id;
     private String name;
-    private String Gender;
-    private Date Membership;
-    private Date birthday;
+    private String gender;
+    private String membership;
+    private String birthday;
     private MembershipLevel membershipLevel;
 
     /**
      * This constructor is used for building objects from the database. See other constructor for parameters
      * @param id The database id of the record
      */
-    public MemberModel(int id, String name, String gender, Date membership, Date birthday, MembershipLevel membershipLevel) {
+    public MemberModel(int id, String name, String filepath, String gender, String membership, String birthday, MembershipLevel membershipLevel) {
         this.id = id;
         this.name = name;
-        Gender = gender;
-        Membership = membership;
+        this.filepath = filepath;
+        this.gender = gender;
+        this.membership = membership;
         this.birthday = birthday;
         this.membershipLevel = membershipLevel;
     }
@@ -31,14 +36,35 @@ public class MemberModel {
      * @param birthday date of birth for promotions (age related programs, gift certificate, etc)
      * @param membershipLevel the level of membership for special benefits
      */
-    public MemberModel(String name, String gender, Date membership, Date birthday, MembershipLevel membershipLevel) {
-        this.id = id;
+    public MemberModel(String name, String filepath, String gender, String membership, String birthday, MembershipLevel membershipLevel) {
         this.name = name;
-        Gender = gender;
-        Membership = membership;
+        this.filepath = filepath;
+        this.gender = gender;
+        this.membership = membership;
         this.birthday = birthday;
         this.membershipLevel = membershipLevel;
     }
+
+    protected MemberModel(Parcel in) {
+        filepath = in.readString();
+        id = in.readInt();
+        name = in.readString();
+        gender = in.readString();
+        membership = in.readString();
+        birthday = in.readString();
+    }
+
+    public static final Creator<MemberModel> CREATOR = new Creator<MemberModel>() {
+        @Override
+        public MemberModel createFromParcel(Parcel in) {
+            return new MemberModel(in);
+        }
+
+        @Override
+        public MemberModel[] newArray(int size) {
+            return new MemberModel[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -53,26 +79,26 @@ public class MemberModel {
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
     public void setGender(String gender) {
-        Gender = gender;
+        this.gender = gender;
     }
 
-    public Date getMembership() {
-        return Membership;
+    public String getMembership() {
+        return membership;
     }
 
-    public void setMembership(Date membership) {
-        Membership = membership;
+    public void setMembership(String membership) {
+        this.membership = membership;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -82,5 +108,34 @@ public class MemberModel {
 
     public void setMembershipLevel(MembershipLevel membershipLevel) {
         this.membershipLevel = membershipLevel;
+    }
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d - %s - %s - %s - %s - %s ", id, name, gender, birthday, membership, membershipLevel);
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(filepath);
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeString(gender);
+        parcel.writeString(membership);
+        parcel.writeString(birthday);
     }
 }

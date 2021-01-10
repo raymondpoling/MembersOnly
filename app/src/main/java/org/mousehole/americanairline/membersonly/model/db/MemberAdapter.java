@@ -1,0 +1,84 @@
+package org.mousehole.americanairline.membersonly.model.db;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import org.mousehole.americanairline.membersonly.R;
+import org.mousehole.americanairline.membersonly.model.MemberModel;
+import org.mousehole.americanairline.membersonly.util.Constants;
+
+import java.util.List;
+
+public class MemberAdapter extends BaseAdapter {
+
+    private List<MemberModel> members;
+    private final DisplayDelegate displayDelegate;
+
+    public interface DisplayDelegate {
+        void showMembers(MemberModel member);
+    }
+
+    public MemberAdapter(List<MemberModel> members, DisplayDelegate displayDelegate) {
+        this.members = members;
+        this.displayDelegate = displayDelegate;
+    }
+
+    @Override
+    public int getCount() {
+        return members.size();
+    }
+
+    @Override
+    public MemberModel getItem(int i) {
+        return members.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return members.get(i).getId();
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        MemberModel member = members.get(i);
+
+        Log.d(Constants.LOG_TAG, member.toString() + " displayed on " + viewGroup);
+
+          View mainView = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.member_list_item,
+                            viewGroup,
+                            false);
+
+        ImageView memberImage = mainView.findViewById(R.id.member_imageview);
+        TextView memberName = mainView.findViewById(R.id.member_name_textview);
+        ImageView membershipLevel = mainView.findViewById(R.id.membershiplevel_imageview);
+
+        memberName.setText(member.getName());
+        int resId = R.drawable.ic_launcher_background;
+        switch(member.getMembershipLevel()) {
+            case GOLD: resId = R.drawable.goldcircle; break;
+            case REGULAR: resId = R.drawable.ic_launcher_background; break;
+            case PLATINUM: resId = R.drawable.star; break;
+        }
+        Log.d(Constants.LOG_TAG, "Gold circle: " + R.drawable.goldcircle);
+        Log.d(Constants.LOG_TAG, "Star: " + R.drawable.star);
+        Log.d(Constants.LOG_TAG, "Current: " + resId);
+
+        membershipLevel.setImageResource(resId);
+
+        Glide.with(mainView.getContext()).load(member.getFilepath()).into(memberImage);
+
+        mainView.setOnClickListener(view1 -> {
+            displayDelegate.showMembers(member);
+        });
+
+        return mainView;
+    }
+}

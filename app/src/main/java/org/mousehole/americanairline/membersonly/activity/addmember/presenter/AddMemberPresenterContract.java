@@ -1,15 +1,15 @@
-package org.mousehole.americanairline.membersonly.presenter;
+package org.mousehole.americanairline.membersonly.activity.addmember.presenter;
 
 import android.content.Context;
 
 import org.mousehole.americanairline.membersonly.model.MemberModel;
 
 public interface AddMemberPresenterContract {
-    public interface AddMemberView {
+    interface AddMemberView {
         void displayAddMember();
         Context getContext();
     }
-    public interface AddMemberPresenter {
+    interface AddMemberPresenter {
         void addMember(MemberModel member);
     }
 }

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.mousehole.americanairline.membersonly">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MembersOnly">
-        <activity android:name=".view.ChangePasswordActivity"></activity>
-        <activity android:name=".view.MemberDisplayActivity" />
-        <activity android:name=".view.MemberListActivity" />
-        <activity android:name=".view.LoginActivity">
+        <activity android:name=".activity.addmember.view.AddMemberActivity" />
+        <activity android:name=".activity.changepassword.view.ChangePasswordActivity" />
+        <activity android:name=".activity.memberdisplay.view.MemberDisplayActivity" />
+        <activity android:name=".activity.listdisplay.view.MemberListActivity" />
+        <activity android:name=".activity.login.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +23,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

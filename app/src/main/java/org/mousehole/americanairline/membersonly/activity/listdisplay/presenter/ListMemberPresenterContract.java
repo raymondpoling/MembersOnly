@@ -1,4 +1,4 @@
-package org.mousehole.americanairline.membersonly.presenter;
+package org.mousehole.americanairline.membersonly.activity.listdisplay.presenter;
 
 import android.content.Context;
 
@@ -7,12 +7,12 @@ import org.mousehole.americanairline.membersonly.model.MemberModel;
 import java.util.List;
 
 public interface ListMemberPresenterContract {
-    public interface ListMemberView {
+    interface ListMemberView {
         void displayListView(List<MemberModel> members);
         Context getContext();
 
     }
-    public interface ListMemberPresenter {
+    interface ListMemberPresenter {
         void getAllMembers(ListMemberView listUseView);
     }
 }
