@@ -8,8 +8,6 @@ import android.util.Log;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKeys;
 
-import org.mousehole.americanairline.membersonly.activity.login.presenter.LoginContract;
-
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
@@ -51,7 +49,7 @@ public class EncryptedPreferences {
         sharedPreferences.edit()
                 .remove(oldUsername)
                 .putString(newUsername, newPassword)
-                .apply();;
+                .apply();
     }
 
 }

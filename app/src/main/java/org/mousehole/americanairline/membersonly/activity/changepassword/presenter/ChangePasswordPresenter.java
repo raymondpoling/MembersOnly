@@ -1,7 +1,5 @@
 package org.mousehole.americanairline.membersonly.activity.changepassword.presenter;
 
-import android.content.Context;
-
 import org.mousehole.americanairline.membersonly.util.EncryptedPreferences;
 
 public class ChangePasswordPresenter implements ChangePasswordPresenterContract.ChangePasswordPresenter {

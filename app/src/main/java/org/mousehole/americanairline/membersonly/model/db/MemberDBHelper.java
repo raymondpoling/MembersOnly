@@ -9,20 +9,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
 import org.mousehole.americanairline.membersonly.model.MemberModel;
 import org.mousehole.americanairline.membersonly.model.MembershipLevel;
-import org.mousehole.americanairline.membersonly.util.Constants;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Member;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static org.mousehole.americanairline.membersonly.util.Constants.LOG_TAG;
@@ -119,7 +111,7 @@ public class MemberDBHelper extends SQLiteOpenHelper {
             String membershipDate = getString(cursor,MEMBERSHIP_DATE_COLUMN);
             MembershipLevel membershipLevel = MembershipLevel.valueOf(cursor.getString(cursor.getColumnIndex(MEMBERSHIPLEVEL_COLUMN)));
 
-            MemberModel member = new MemberModel(id, name, memberImage, gender, birthday, membershipDate, membershipLevel);
+            MemberModel member = new MemberModel(id, name, memberImage, gender, membershipDate, birthday, membershipLevel);
             members.add(member);
         }
         return members;

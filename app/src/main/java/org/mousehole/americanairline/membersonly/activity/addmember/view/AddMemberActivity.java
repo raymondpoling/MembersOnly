@@ -1,15 +1,11 @@
 package org.mousehole.americanairline.membersonly.activity.addmember.view;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,17 +16,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.mousehole.americanairline.membersonly.R;
-import org.mousehole.americanairline.membersonly.activity.addmember.presenter.AddMemberPresenterContract;
 import org.mousehole.americanairline.membersonly.activity.addmember.presenter.AddMemberPresenter;
+import org.mousehole.americanairline.membersonly.activity.addmember.presenter.AddMemberPresenterContract;
 import org.mousehole.americanairline.membersonly.model.MemberModel;
 import org.mousehole.americanairline.membersonly.model.MembershipLevel;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static org.mousehole.americanairline.membersonly.util.Constants.LOG_TAG;
 
 public class AddMemberActivity extends AppCompatActivity implements AddMemberPresenterContract.AddMemberView {
 
@@ -119,7 +116,7 @@ public class AddMemberActivity extends AppCompatActivity implements AddMemberPre
 
 
         // prefill start date as today
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         membershipDateEditText.setText(dateFormat.format(new Date()));
 
         addMemberButton.setOnClickListener(v -> {

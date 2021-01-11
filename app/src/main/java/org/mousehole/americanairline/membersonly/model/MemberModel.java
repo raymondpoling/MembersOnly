@@ -3,6 +3,9 @@ package org.mousehole.americanairline.membersonly.model;
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
+
+import static org.mousehole.americanairline.membersonly.util.Constants.LOG_TAG;
 
 public class MemberModel implements Parcelable {
     private Bitmap memberBitmap;
@@ -46,6 +49,9 @@ public class MemberModel implements Parcelable {
 
     protected MemberModel(Parcel in) {
         memberBitmap = (Bitmap) in.readValue(getClass().getClassLoader());
+        String ml = in.readString();
+        Log.d(LOG_TAG, "What is the in string? " + membershipLevel);
+        membershipLevel = MembershipLevel.valueOf(ml);
         id = in.readInt();
         name = in.readString();
         gender = in.readString();
@@ -130,7 +136,9 @@ public class MemberModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        Log.d(LOG_TAG, "What is the enum out? " + membershipLevel.toString());
         parcel.writeValue(memberBitmap);
+        parcel.writeString(membershipLevel.toString());
         parcel.writeInt(id);
         parcel.writeString(name);
         parcel.writeString(gender);

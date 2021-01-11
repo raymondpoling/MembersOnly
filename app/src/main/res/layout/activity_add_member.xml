@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
+        style="@style/ListNameStyle"
         android:id="@+id/name_edittext"
         android:inputType="textPersonName"
         android:layout_width="wrap_content"
@@ -26,6 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
+        style="@style/ListDetailStyle"
         android:id="@+id/gender_spinner"
         android:inputType="text"
         android:layout_width="wrap_content"
@@ -36,6 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
+        style="@style/ListDetailStyle"
         android:id="@+id/birthday_edittext"
         android:inputType="date"
         android:layout_width="wrap_content"
@@ -46,6 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
+        style="@style/ListDetailStyle"
         android:id="@+id/membership_date_edittext"
         android:inputType="date"
         android:layout_width="wrap_content"
@@ -56,6 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
+        style="@style/ListDetailStyle"
         android:id="@+id/memberhip_level_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,11 +68,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/add_member_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
+        android:text="@string/add_new_member"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

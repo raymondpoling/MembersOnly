@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import org.mousehole.americanairline.membersonly.R;
 import org.mousehole.americanairline.membersonly.model.MemberModel;
+import org.mousehole.americanairline.membersonly.model.MembershipLevel;
 import org.mousehole.americanairline.membersonly.util.Constants;
 
 import java.util.List;
@@ -61,25 +62,14 @@ public class MemberAdapter extends BaseAdapter {
         ImageView membershipLevel = mainView.findViewById(R.id.membershiplevel_imageview);
 
         memberName.setText(member.getName());
-        int resId = R.drawable.ic_launcher_background;
-        switch(member.getMembershipLevel()) {
-            case GOLD: resId = R.drawable.goldcircle; break;
-            case REGULAR: resId = R.drawable.ic_launcher_background; break;
-            case PLATINUM: resId = R.drawable.star; break;
-        }
-        Log.d(Constants.LOG_TAG, "Gold circle: " + R.drawable.goldcircle);
-        Log.d(Constants.LOG_TAG, "Star: " + R.drawable.star);
-        Log.d(Constants.LOG_TAG, "Current: " + resId);
 
-        membershipLevel.setImageResource(resId);
+        membershipLevel.setImageResource(MembershipLevel.getImageReference(member.getMembershipLevel()));
 
         if(member.getMemberBitmap() != null) {
             Glide.with(mainView.getContext()).load(member.getMemberBitmap()).into(memberImage);
         }
 
-        mainView.setOnClickListener(view1 -> {
-            displayDelegate.showMembers(member);
-        });
+        mainView.setOnClickListener(view1 -> displayDelegate.showMembers(member));
 
         return mainView;
     }

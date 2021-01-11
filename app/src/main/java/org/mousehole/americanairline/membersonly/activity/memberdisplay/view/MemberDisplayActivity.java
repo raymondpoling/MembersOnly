@@ -13,6 +13,7 @@ import org.mousehole.americanairline.membersonly.R;
 import org.mousehole.americanairline.membersonly.model.MemberModel;
 import org.mousehole.americanairline.membersonly.activity.memberdisplay.presenter.MemberDisplayContract;
 import org.mousehole.americanairline.membersonly.activity.memberdisplay.presenter.MemberDisplayPresenter;
+import org.mousehole.americanairline.membersonly.model.MembershipLevel;
 import org.mousehole.americanairline.membersonly.util.Constants;
 
 import static org.mousehole.americanairline.membersonly.activity.listdisplay.view.MemberListActivity.DISPLAY_MEMBER;
@@ -21,7 +22,7 @@ public class MemberDisplayActivity extends AppCompatActivity implements MemberDi
 
     TextView nameTextView, genderTextView, birthdayTextView, membershipDateTextView, memberShipLevelTextView;
 
-    ImageView memberImage;
+    ImageView memberImage, ribbonImageView;
 
     Button backButton, deleteButton;
 
@@ -36,8 +37,8 @@ public class MemberDisplayActivity extends AppCompatActivity implements MemberDi
         genderTextView = findViewById(R.id.gender_textview);
         birthdayTextView = findViewById(R.id.birthday_textview);
         membershipDateTextView = findViewById(R.id.membership_date_textview);
-        memberShipLevelTextView = findViewById(R.id.membershiplevel_textview);
         memberImage = findViewById(R.id.icon_imageview);
+        ribbonImageView = findViewById(R.id.ribbon_imageview);
 
         backButton = findViewById(R.id.back_button);
         deleteButton = findViewById(R.id.delete_button);
@@ -59,8 +60,9 @@ public class MemberDisplayActivity extends AppCompatActivity implements MemberDi
     public void displayMember(MemberModel member) {
         nameTextView.setText(member.getName());
         genderTextView.setText(member.getGender());
-        birthdayTextView.setText(member.getBirthday());
-        membershipDateTextView.setText(member.getMembership());
+        birthdayTextView.setText(getString(R.string.birthday_constant, member.getBirthday()));
+        membershipDateTextView.setText(getString(R.string.membership_constant, member.getMembership()));
+        ribbonImageView.setImageResource(MembershipLevel.getImageReference(member.getMembershipLevel()));
         if(member.getMemberBitmap() != null) {
             memberImage.setImageBitmap(member.getMemberBitmap());
         }
