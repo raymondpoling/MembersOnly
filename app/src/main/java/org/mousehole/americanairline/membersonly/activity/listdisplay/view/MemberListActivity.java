@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.mousehole.americanairline.membersonly.R;
 import org.mousehole.americanairline.membersonly.activity.addmember.view.AddMemberActivity;
+import org.mousehole.americanairline.membersonly.activity.changepassword.view.ChangePasswordActivity;
 import org.mousehole.americanairline.membersonly.model.MemberModel;
 import org.mousehole.americanairline.membersonly.model.db.MemberAdapter;
 import org.mousehole.americanairline.membersonly.activity.listdisplay.presenter.ListMemberPresenter;
@@ -21,6 +23,7 @@ import java.util.List;
 public class MemberListActivity extends AppCompatActivity implements ListMemberPresenterContract.ListMemberView, MemberAdapter.DisplayDelegate {
 
     private ListMemberPresenterContract.ListMemberPresenter listMemberPresenter;
+    private ImageView adminImageView;
 
     public ListView memberListView;
     public Button addMemberButton;
@@ -34,13 +37,21 @@ public class MemberListActivity extends AppCompatActivity implements ListMemberP
 
         memberListView = findViewById(R.id.member_listview);
         addMemberButton = findViewById(R.id.add_member_button);
+        adminImageView = findViewById(R.id.admin_imageview);
 
         listMemberPresenter = new ListMemberPresenter(this);
+
+        adminImageView.setOnClickListener(v -> {
+            Intent changePassword = new Intent(this, ChangePasswordActivity.class);
+            startActivity(changePassword);
+        });
 
         addMemberButton.setOnClickListener(v -> {
             Intent addMemberIntent = new Intent(this, AddMemberActivity.class);
             startActivity(addMemberIntent);
         });
+
+
 
         listMemberPresenter.getAllMembers(this);
     }

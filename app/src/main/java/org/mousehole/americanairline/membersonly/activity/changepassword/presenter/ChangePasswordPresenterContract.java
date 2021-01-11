@@ -1,10 +1,13 @@
 package org.mousehole.americanairline.membersonly.activity.changepassword.presenter;
 
-public class ChangePasswordPresenterContract {
-    public interface ChangePasswordPresenter {
-        void changePassword(String oldPassword, String newPassword);
+import android.content.Context;
+
+public interface ChangePasswordPresenterContract {
+    interface ChangePasswordPresenter {
+        void changePassword(String oldUsername, String newUsername, String oldPassword, String newPassword);
     }
-    public interface ChagnePasswordView {
+    interface ChangePasswordView {
+        Context getContext();
         void changePasswordSuccess(String message);
         void changePasswordFailure(String message);
     }

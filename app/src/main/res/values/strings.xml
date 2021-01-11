@@ -10,6 +10,9 @@
     <string name="birthday">Birthday</string>
     <string name="back_button">Back Button</string>
     <string name="delete_member">Delete Member!</string>
+    <string name="password_old">Password Old</string>
+    <string name="new_username_optional">New Username</string>
+    <string name="commit_changes">Commit Changes</string>
     <string-array name="membership_levels">
         <item>REGULAR</item>
         <item>GOLD</item>

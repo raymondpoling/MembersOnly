@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import org.mousehole.americanairline.membersonly.R;
 import org.mousehole.americanairline.membersonly.activity.addmember.presenter.AddMemberPresenterContract;
-import org.mousehole.americanairline.membersonly.activity.presenter.AddMemberPresenter;
+import org.mousehole.americanairline.membersonly.activity.addmember.presenter.AddMemberPresenter;
 import org.mousehole.americanairline.membersonly.model.MemberModel;
 import org.mousehole.americanairline.membersonly.model.MembershipLevel;
 
