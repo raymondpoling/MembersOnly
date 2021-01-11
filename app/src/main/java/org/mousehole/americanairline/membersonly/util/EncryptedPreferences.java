@@ -42,7 +42,9 @@ public class EncryptedPreferences {
     }
 
     public boolean comparePasswords(String username, String password) {
-        return password.equals(sharedPreferences.getString(username,"username"));
+        boolean result = password.equals(sharedPreferences.getString(username,"username"));
+        Log.d(LOG_TAG, "preferences are? " + sharedPreferences.getAll().toString());
+        return result;
     }
 
     public void changePreferences(String oldUsername, String newUsername, String newPassword) {

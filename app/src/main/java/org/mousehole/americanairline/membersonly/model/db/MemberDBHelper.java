@@ -92,7 +92,6 @@ public class MemberDBHelper extends SQLiteOpenHelper {
     }
 
     public List<MemberModel> getAllMembers() {
-        getWritableDatabase();
         Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_NAME, null);
         cursor.move(-1);
         List<MemberModel> members = new ArrayList<>(cursor.getCount());
@@ -118,7 +117,12 @@ public class MemberDBHelper extends SQLiteOpenHelper {
     }
 
     public void deleteMember(MemberModel member) {
-        Log.d(LOG_TAG, "Trying to delete: " + member.toString());
-        getWritableDatabase().delete(TABLE_NAME, MEMBERID_COLUMN + " = " + member.getId(), null);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(LOG_TAG, "Trying to delete: " + member.toString());
+                getWritableDatabase().delete(TABLE_NAME, MEMBERID_COLUMN + " = " + member.getId(), null);
+            }
+        }).start();
     }
 }
